@@ -22,7 +22,7 @@
     backbtn.classList.add("m-4")
     backbtn.classList.add("mb-0")
     backbtn.appendChild(backIcon);
-    backbtn.href = "../index.html"
+    backbtn.href = "../"
     const titlehead = document.createElement("h1");
     titlehead.classList.add("text-center")
     titlehead.classList.add("p-5")
