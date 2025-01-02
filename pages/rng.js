@@ -18,6 +18,8 @@ const floatModeBtn = (document.getElementById("floatModeBtn"))
 /** @type {HTMLButtonElement} */
 const clearBtn = (document.getElementById("clearBtn"))
 /** @type {HTMLTextAreaElement} */
+const autoClearBtn = (document.getElementById("autoClearBtn"))
+/** @type {HTMLTextAreaElement} */
 const output = (document.getElementById("output"))
 /**
  * @typedef {{show: function(): void }} BootstrapModal
@@ -33,6 +35,14 @@ let switchToInt;
 /** @type {function(): void} */
 let switchToFloat;
 /** @type {function(): void} */
+let autoClearOn;
+/** @type {function(): void} */
+let autoClearOff;
+/** @type {function(): void} */
+let toggleAutoClear;
+/** @type {function(): boolean} */
+let getAutoClearMode;
+/** @type {function(): void} */
 let generateValue;
 /** @type {function(): "int" | "float"} */
 let getCurrentMode;
@@ -43,6 +53,8 @@ let clearOutput;
 (function () {
     /** @type {"int" | "float"} */
     let _currentMode = "int"
+    /** @type {boolean} */
+    let _autoClear = true
     getCurrentMode = function () {
         return _currentMode;
     }
@@ -66,7 +78,7 @@ let clearOutput;
         const from = parseFloat(fromtb.value)
         const to = parseFloat(totb.value)
         const genCount = parseInt(genCounttb.value)
-        const wasEmpty = output.value == ""
+        const wasEmpty = _autoClear || output.value == ""
         let outStr = ""
         if (_currentMode == "int") {
             for (let i = 0; i < genCount; i++) {
@@ -81,18 +93,43 @@ let clearOutput;
             // removes the first \n
             outStr = outStr.substring(1)
         }
-        output.value += outStr
+        if (_autoClear)
+            output.value = outStr
+        else
+            output.value += outStr
+    }
+    getAutoClearMode = function() {
+        return _autoClear
+    }
+    autoClearOn = function() {
+        _autoClear = true
+        autoClearBtn.innerText = "Auto Clear: On"
+        autoClearBtn.classList.remove("btn-outline-primary")
+        autoClearBtn.classList.add("btn-primary")
+    }
+    autoClearOff = function() {
+        _autoClear = false
+        autoClearBtn.innerText = "Auto Clear: Off"
+        autoClearBtn.classList.remove("btn-primary")
+        autoClearBtn.classList.add("btn-outline-primary")
+    }
+    toggleAutoClear = function() {
+        if (_autoClear)
+            autoClearOff()
+        else
+            autoClearOn()
     }
     clearOutput = function () {
         output.value = ""
     }
     
     fromtb.focus()
-    copyBtn.onclick = copyToClipboard;
-    genBtn.onclick = generateValue;
-    floatModeBtn.onclick = switchToFloat;
-    intModeBtn.onclick = switchToInt;
+    copyBtn.onclick = copyToClipboard
+    genBtn.onclick = generateValue
+    floatModeBtn.onclick = switchToFloat
+    intModeBtn.onclick = switchToInt
     clearBtn.onclick = clearOutput
+    autoClearBtn.onclick = toggleAutoClear
     copyToClipboard = function () {
         navigator.clipboard.writeText(righttb.value).then(function () {
             
