@@ -1,5 +1,16 @@
+@media (prefers-color-scheme: dark) {
+    .dark-mode-text-white {
+        color: white !important;
+    }
+}
 @media (min-width: 576px) {
     .w-sm-75 {
         width: 75% !important;
+    }
+    .w-sm-50 {
+        width: 50% !important;
+    }
+    .w-sm-25 {
+        width: 25% !important;
     }
 }

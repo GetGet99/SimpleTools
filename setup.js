@@ -1,16 +1,24 @@
 // prevent variables from being exported
 (function () {
-    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (prefersDarkScheme) {
-        document.getElementsByTagName("html")[0].setAttribute("data-bs-theme", "dark")
-        // document.body.classList.add("bg-dark");
+    if (window.matchMedia) {
+        const preferesDarkScheme = window.matchMedia("(prefers-color-scheme: dark)")
+        if (preferesDarkScheme.matches) {
+            document.getElementsByTagName("html")[0].setAttribute("data-bs-theme", "dark")
+        }
+        preferesDarkScheme.addEventListener('change', function() {
+            if (preferesDarkScheme.matches) {
+                document.getElementsByTagName("html")[0].setAttribute("data-bs-theme", "dark")
+            } else {
+                document.getElementsByTagName("html")[0].removeAttribute("data-bs-theme")
+            }
+        })
     }
     const backIcon = document.createElement("i")
     backIcon.className = "bi bi-arrow-left"
     const backbtn = document.createElement("a");
     backbtn.classList.add("btn")
     backbtn.classList.add("btn-outline-primary")
-    backbtn.classList.add("text-white")
+    backbtn.classList.add("dark-mode-text-white")
     backbtn.classList.add("m-4")
     backbtn.classList.add("mb-0")
     backbtn.appendChild(backIcon);
