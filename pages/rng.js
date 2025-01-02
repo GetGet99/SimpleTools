@@ -60,7 +60,7 @@ let clearOutput;
         floatModeBtn.classList.add("btn-primary")
         intModeBtn.classList.remove("btn-primary")
         intModeBtn.classList.add("btn-outline-primary")
-        totb.placeholder = "To (Excluive)"
+        totb.placeholder = "To (Exclusive)"
     }
     generateValue = function () {
         const from = parseFloat(fromtb.value)
