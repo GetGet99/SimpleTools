@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="color-scheme: dark light;">
+<html style="color-scheme: dark light; min-height: 100%;">
 
 <head>
     <meta name="color-scheme" content="dark light">
@@ -11,7 +11,7 @@
     <title>Simple Tools</title>
 </head>
 
-<body style="overflow-x: hidden;">
+<body class="d-flex flex-column min-vh-100" style="overflow-x: hidden;">
     <noscript>
         <h1>JavaScript is required for the most part of the site. As all tools are written to work locally.</h1>
     </noscript>
@@ -19,7 +19,7 @@
         Simple Tools
     </h1>
     <h2 class="h5 pb-2 text-center">Free simple tools! No ads! No data stealing!</h2>
-    <div class="m-2 row w-sm-75 mx-auto">
+    <main class="m-2 row w-sm-75 mx-auto flex-grow-1">
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card m-2">
                 <div class="card-body">
@@ -38,7 +38,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+    <footer class="mt-auto m-4 text-md-center">
+        Simple Tools is open sourced on <a href="https://github.com/GetGet99/SimpleTools">GitHub</a>.
+    </footer>
 </body>
 <script src="setup_home.js"></script>
 
