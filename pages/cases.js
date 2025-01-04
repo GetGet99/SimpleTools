@@ -57,5 +57,6 @@ let copyToClipboard;
             console.error('Async: Could not copy text: ', err);
         });
     }
-    
+    // funny
+    randomcase.innerText = CASES.randomcase("randomcase")
 })()
